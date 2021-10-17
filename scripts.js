@@ -1,6 +1,6 @@
 let nextPlayer = 'X'; // takes a value of either 'X' or 'O' according to the game turns
-let nextPlayerLbl = document.getElementById('next-lbl');
-nextPlayerLbl.innerText = "" + nextPlayer; //x or o
+let playerTurn = document.getElementById('next-lbl');
+playerTurn.innerText = "" + nextPlayer; //x or o
 
 //initialize the game
 // use the value stored in the nextPlayer variable to indicate who the next player is
@@ -33,24 +33,22 @@ function takeCell(event){
     event.target.innerText = "[" + nextPlayer + "]";
     event.target.disabled = true;    // this makes button only clickable once
 
-    if(nextPlayer == 'X'){
+    if (nextPlayer == 'X'){
         nextPlayer = 'O';
     }
-    else{
+    else {
         nextPlayer = 'X';
     }
-    nextPlayerLbl.innerText = "" + nextPlayer;
+    playerTurn.innerText = "" + nextPlayer;
 
 
     // Check if the game is over
     if (isGameOver())
     {
         // let the lable with the id 'game-over-lbl' display the words 'Game Over' inside <h1> element
-        let text = document.createTextNode("Game Over!");
-        let h1 = document.createElement("h1");
-        h1.appendChild(text);
-        let gameOverLabel = document.getElementsById('game-over-lbl');
-        gameOverLabel.appendChild(h1);
+        let gameOverL = document.getElementById("game-over-lbl");
+        gameOverL.innerHTML = `<h1>Game Over</h1>`;
+
     }
 
     // I'll leave declaring the winner for your intrinsic motivation, it's not required for this assignment 
@@ -66,7 +64,7 @@ function isGameOver()
         }
     }
     if (disabled == 9){
-        nextPlayerLbl.innerText = "GAME OVER!" //this is just to test if the game over function works
+        // nextPlayerLbl.innerText = "GAME OVER!" //this is just to test if the game over function works
         return true; //returns true when all buttons have been pressed
     }
     return false
